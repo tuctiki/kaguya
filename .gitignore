@@ -36,6 +36,7 @@ frontend/node_modules/
 frontend/.next/
 frontend/out/
 frontend/build/
+frontend/*.tsbuildinfo
 
 # OS
 .DS_Store
