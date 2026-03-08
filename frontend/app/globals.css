@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050505;
+  --foreground: #f0f0f0;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pink-glow {
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.2);
+}
+
+.cyan-glow {
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+}
