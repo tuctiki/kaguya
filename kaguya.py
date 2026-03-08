@@ -87,6 +87,10 @@ class KaguyaEngine:
                 name=data['Girl_Name'],
                 height_cm=data['Height_cm'],
                 cup_size=data['Cup_Size'],
+                measurements=data.get('Measurements'),
+                weight_kg=data.get('Weight_kg'),
+                shop_name=data.get('Shop_Name'),
+                service_type=data.get('Service_Type'),
                 local_image_path=local_image_path
             )
             self.session.add(profile)
@@ -94,6 +98,10 @@ class KaguyaEngine:
             # Update dynamic fields
             profile.name = data['Girl_Name']
             profile.cup_size = data['Cup_Size']
+            profile.measurements = data.get('Measurements')
+            profile.weight_kg = data.get('Weight_kg')
+            profile.shop_name = data.get('Shop_Name')
+            profile.service_type = data.get('Service_Type')
             if local_image_path:
                 profile.local_image_path = local_image_path
 
@@ -110,7 +118,8 @@ class KaguyaEngine:
             availability=data['Availability_Notes'],
             review_count=data['Review_Count'],
             face_photo_quality=data['Face_Photo_Quality'],
-            change_notes=change_notes
+            change_notes=change_notes,
+            personal_notes=data.get('Personal_Notes')
         )
         self.session.add(snapshot)
         self.session.commit()

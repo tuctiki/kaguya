@@ -12,6 +12,10 @@ class GirlProfile(Base):
     name = Column(String)
     height_cm = Column(Integer)
     cup_size = Column(String)
+    measurements = Column(String)
+    weight_kg = Column(String)
+    shop_name = Column(String)
+    service_type = Column(String)
     local_image_path = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
     
@@ -30,6 +34,7 @@ class Snapshot(Base):
     review_count = Column(Integer)
     change_notes = Column(String)
     face_photo_quality = Column(String)
+    personal_notes = Column(String)
     
     profile = relationship("GirlProfile", back_populates="snapshots")
 

@@ -26,6 +26,7 @@ class SnapshotBase(BaseModel):
     review_count: Optional[int]
     change_notes: Optional[str]
     face_photo_quality: Optional[str]
+    personal_notes: Optional[str]
 
 class ProfileBase(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -34,6 +35,10 @@ class ProfileBase(BaseModel):
     name: str
     height_cm: Optional[int]
     cup_size: Optional[str]
+    measurements: Optional[str]
+    weight_kg: Optional[str]
+    shop_name: Optional[str]
+    service_type: Optional[str]
     local_image_path: Optional[str]
 
 class ProfileWithLatest(ProfileBase):
