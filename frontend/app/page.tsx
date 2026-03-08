@@ -262,9 +262,13 @@ export default function Dashboard() {
                     <th className="px-6 py-5 relative w-24">
                       <button 
                         onClick={(e) => { e.stopPropagation(); setActiveFilter(activeFilter === 'age' ? null : 'age'); }}
-                        className="flex items-center justify-center gap-2 w-full group cursor-pointer transition-all hover:scale-105"
+                        className={`flex items-center justify-center gap-2 w-full group cursor-pointer transition-all hover:scale-105 ${
+                          ageRange.min !== 18 || ageRange.max !== 24 ? "text-pink-500" : ""
+                        }`}
                       >
-                        <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] group-hover:text-pink-500 transition-colors">Age</span>
+                        <span className={`text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${
+                          ageRange.min !== 18 || ageRange.max !== 24 ? "text-pink-500" : "text-slate-500 group-hover:text-pink-500"
+                        }`}>Age</span>
                         <Filter className={`w-3 h-3 ${ageRange.min !== 18 || ageRange.max !== 24 ? 'text-pink-500' : 'text-slate-700'} group-hover:text-pink-500`} />
                       </button>
                       {activeFilter === 'age' && (
@@ -304,9 +308,13 @@ export default function Dashboard() {
                     <th className="px-6 py-5 relative w-20">
                       <button 
                         onClick={(e) => { e.stopPropagation(); setActiveFilter(activeFilter === 'cup' ? null : 'cup'); }}
-                        className="flex items-center justify-center gap-2 w-full group cursor-pointer transition-all hover:scale-105"
+                        className={`flex items-center justify-center gap-2 w-full group cursor-pointer transition-all hover:scale-105 ${
+                          cupRange.min !== 'A' || cupRange.max !== 'Z' ? "text-pink-500" : ""
+                        }`}
                       >
-                        <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] group-hover:text-pink-500 transition-colors">Cup</span>
+                        <span className={`text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${
+                          cupRange.min !== 'A' || cupRange.max !== 'Z' ? "text-pink-500" : "text-slate-500 group-hover:text-pink-500"
+                        }`}>Cup</span>
                         <Filter className={`w-3 h-3 ${cupRange.min !== 'A' || cupRange.max !== 'Z' ? 'text-pink-500' : 'text-slate-700'} group-hover:text-pink-500`} />
                       </button>
                       {activeFilter === 'cup' && (
@@ -343,9 +351,13 @@ export default function Dashboard() {
                     <th className="px-6 py-5 relative w-40">
                       <button 
                         onClick={(e) => { e.stopPropagation(); setActiveFilter(activeFilter === 'area' ? null : 'area'); }}
-                        className="flex items-center gap-2 group cursor-pointer transition-all hover:translate-x-1"
+                        className={`flex items-center gap-2 group cursor-pointer transition-all hover:translate-x-1 ${
+                          selectedAreas.length > 0 ? "text-pink-500" : ""
+                        }`}
                       >
-                        <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] group-hover:text-pink-500 transition-colors">Sector</span>
+                        <span className={`text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${
+                          selectedAreas.length > 0 ? "text-pink-500" : "text-slate-500 group-hover:text-pink-500"
+                        }`}>Sector</span>
                         <Filter className={`w-3 h-3 ${selectedAreas.length > 0 ? 'text-pink-500' : 'text-slate-700'} group-hover:text-pink-500`} />
                       </button>
                       {activeFilter === 'area' && (
@@ -411,7 +423,7 @@ export default function Dashboard() {
                     )}
                     {visibleColumns.includes("measurements") && (
                       <td className="px-6 py-6 text-center">
-                        <span className="text-[11px] font-bold text-slate-500 group-hover:text-cyan-400 transition-colors font-mono tracking-tighter bg-slate-950/40 px-3 py-1.5 rounded-lg border border-slate-800/50">{p.measurements || "VOID"}</span>
+                        <span className="text-[11px] font-bold text-slate-500 group-hover:text-cyan-400 transition-colors font-mono tracking-tighter">{p.measurements || "VOID"}</span>
                       </td>
                     )}
                     {visibleColumns.includes("height") && (
@@ -450,7 +462,6 @@ export default function Dashboard() {
                     {visibleColumns.includes("area") && (
                       <td className="px-6 py-6">
                         <div className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-tighter group-hover:text-pink-400/80 transition-colors">
-                          <MapPin className="w-3 h-3 text-slate-700 group-hover:text-pink-600 transition-colors" />
                           {p.latest_snapshot?.area || "VOID"}
                         </div>
                       </td>
