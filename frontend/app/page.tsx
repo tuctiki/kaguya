@@ -418,7 +418,14 @@ export default function Dashboard() {
                       <td className="px-6 py-6 text-center text-xs font-bold text-slate-500 group-hover:text-slate-200">{p.height_cm}<span className="text-[9px] text-slate-700 ml-0.5">CM</span></td>
                     )}
                     {visibleColumns.includes("weight") && (
-                      <td className="px-6 py-6 text-center text-xs font-bold text-slate-500 group-hover:text-slate-200">{p.weight_kg ? p.weight_kg.replace('kg', '') : "—"}<span className="text-[9px] text-slate-700 ml-0.5">{p.weight_kg ? "KG" : ""}</span></td>
+                      <td className="px-6 py-6 text-center text-xs font-bold text-slate-500 group-hover:text-slate-200">
+                        {p.weight_kg && !p.weight_kg.includes("N/A") ? (
+                          <>
+                            {p.weight_kg.replace(/kg/i, '')}
+                            <span className="text-[9px] text-slate-700 ml-0.5">KG</span>
+                          </>
+                        ) : "—"}
+                      </td>
                     )}
                     {visibleColumns.includes("cup") && (
                       <td className="px-6 py-6 text-center">
