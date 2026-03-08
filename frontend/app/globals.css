@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #030303;
-  --foreground: #e2e8f0;
-  --primary: #ec4899;
-  --secondary: #06b6d4;
-  --accent: #f472b6;
-  --muted: #1e293b;
-  --border: #1e293b;
+  --background: #0c0a09;
+  --foreground: #f5f5f4;
+  --primary: #f59e0b;
+  --secondary: #b45309;
+  --accent: #d97706;
+  --muted: #1c1917;
+  --border: #292524;
 }
 
 body {
@@ -22,25 +22,25 @@ body {
 
 @layer base {
   body {
-    background: radial-gradient(circle at 50% 0%, #111 0%, #030303 100%);
+    background: radial-gradient(circle at 50% 0%, #1c1917 0%, #0c0a09 100%);
     background-attachment: fixed;
   }
 }
 
 /* Glassmorphism utility */
 .glass {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(28, 25, 23, 0.7);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.05);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
 }
 
-.pink-glow {
-  box-shadow: 0 0 20px rgba(236, 72, 153, 0.15);
+.amber-glow {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
 }
 
-.cyan-glow {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+.gold-glow {
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.1);
 }
 
 /* Custom Scrollbar */
