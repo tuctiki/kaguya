@@ -31,7 +31,7 @@ interface Profile {
 }
 
 const COLUMNS = [
-  { id: "photo", label: "Obj", alwaysVisible: true },
+  { id: "photo", label: "Obj" },
   { id: "name", label: "Identifier", alwaysVisible: true },
   { id: "age", label: "Age" },
   { id: "measurements", label: "3S" },
