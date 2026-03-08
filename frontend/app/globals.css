@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #0c0a09;
-  --foreground: #f5f5f4;
-  --primary: #f59e0b;
-  --secondary: #b45309;
-  --accent: #d97706;
-  --muted: #1c1917;
-  --border: #292524;
+  --background: #171412;
+  --foreground: #d6d3d1;
+  --primary: #b45309;
+  --secondary: #854d0e;
+  --accent: #f59e0b;
+  --muted: #201c19;
+  --border: #332d29;
 }
 
 body {
@@ -22,25 +22,25 @@ body {
 
 @layer base {
   body {
-    background: radial-gradient(circle at 50% 0%, #1c1917 0%, #0c0a09 100%);
+    background: radial-gradient(circle at 50% 0%, #201c19 0%, #171412 100%);
     background-attachment: fixed;
   }
 }
 
 /* Glassmorphism utility */
 .glass {
-  background: rgba(28, 25, 23, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(245, 158, 11, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  background: rgba(32, 28, 25, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(180, 83, 9, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.9);
 }
 
 .amber-glow {
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+  box-shadow: 0 0 25px rgba(180, 83, 9, 0.15);
 }
 
 .gold-glow {
-  box-shadow: 0 0 20px rgba(217, 119, 6, 0.1);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);
 }
 
 /* Custom Scrollbar */
