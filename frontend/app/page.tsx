@@ -270,7 +270,7 @@ export default function Dashboard() {
         </header>
 
         {/* Table View */}
-        <div className="rounded-3xl border border-stone-800/40 bg-stone-900/10 backdrop-blur-xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.8)] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700">
+        <div className="rounded-3xl border border-stone-800/40 bg-stone-900/10 backdrop-blur-xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.8)] animate-in fade-in slide-in-from-bottom-8 duration-700">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse table-fixed">
               <thead>
@@ -417,18 +417,20 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-800/20">
-                {filteredProfiles.map((p) => (
+                {filteredProfiles.map((p, idx) => (
                   <tr 
                     key={p.profile_url}
                     className="group hover:bg-stone-900/10 transition-all duration-200"
                   >
                     {visibleColumns.includes("photo") && (
-                      <td className="px-6 py-6">
+                      <td className="px-6 py-6" style={{ zIndex: 10 }}>
                         <a 
                           href={p.profile_url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="block w-20 h-28 mx-auto rounded-xl overflow-hidden border border-stone-800 group-hover:border-amber-700/40 transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.5)] group-hover:scale-[2.5] group-hover:z-50 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative bg-stone-950/60 origin-center"
+                          className={`block w-20 h-28 mx-auto rounded-xl overflow-hidden border border-stone-800 group-hover:border-amber-700/40 transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.5)] group-hover:scale-[2] group-hover:z-50 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative bg-stone-950/60 ${
+                            idx < 3 ? 'origin-top-left' : idx > filteredProfiles.length - 4 ? 'origin-bottom-left' : 'origin-left'
+                          }`}
                         >
                           <img 
                             src={p.local_image_path || "https://placehold.co/180x240?text=?"} 
