@@ -428,7 +428,7 @@ export default function Dashboard() {
                           href={p.profile_url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="block w-20 h-28 mx-auto rounded-xl overflow-hidden border border-stone-800 group-hover:border-amber-700/40 transition-all shadow-[0_4px_24px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-rotate-1 relative bg-stone-950/60"
+                          className="block w-20 h-28 mx-auto rounded-xl overflow-hidden border border-stone-800 group-hover:border-amber-700/40 transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.5)] group-hover:scale-[2.5] group-hover:z-50 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative bg-stone-950/60 origin-center"
                         >
                           <img 
                             src={p.local_image_path || "https://placehold.co/180x240?text=?"} 
