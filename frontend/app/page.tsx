@@ -446,12 +446,9 @@ export default function Dashboard() {
                     )}
                     {visibleColumns.includes("price") && (
                       <td className="px-6 py-6">
-                        <div className="flex flex-col">
-                          <span className="text-xs font-black text-slate-200 group-hover:text-white transition-colors">
-                            {p.latest_snapshot?.price_yen ? `¥${p.latest_snapshot.price_yen.toLocaleString()}` : "—"}
-                          </span>
-                          <span className="text-[8px] text-slate-600 font-bold uppercase tracking-widest mt-0.5">Standard Rate</span>
-                        </div>
+                        <span className="text-xs font-black text-slate-200 group-hover:text-white transition-colors">
+                          {p.latest_snapshot?.price_yen ? `¥${p.latest_snapshot.price_yen.toLocaleString()}` : "—"}
+                        </span>
                       </td>
                     )}
                     {visibleColumns.includes("shop") && (
