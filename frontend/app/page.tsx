@@ -49,7 +49,7 @@ export default function Dashboard() {
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("Newest");
+  const [sortBy, setSortBy] = useState("Newest Intel");
   const [visibleColumns, setVisibleColumns] = useState<string[]>(["photo", "name", "age", "measurements", "height", "weight", "cup", "price", "shop", "area", "availability"]);
   const [showColumnSelector, setShowColumnSelector] = useState(false);
 
@@ -116,6 +116,19 @@ export default function Dashboard() {
       .sort((a, b) => {
         if (sortBy === "Price: Low") return (a.latest_snapshot?.price_yen || 0) - (b.latest_snapshot?.price_yen || 0);
         if (sortBy === "Price: High") return (b.latest_snapshot?.price_yen || 0) - (a.latest_snapshot?.price_yen || 0);
+        
+        if (sortBy === "Age: Low") return (a.latest_snapshot?.age || 0) - (b.latest_snapshot?.age || 0);
+        if (sortBy === "Age: High") return (b.latest_snapshot?.age || 0) - (a.latest_snapshot?.age || 0);
+        
+        if (sortBy === "Height: Low") return (a.height_cm || 0) - (b.height_cm || 0);
+        if (sortBy === "Height: High") return (b.height_cm || 0) - (a.height_cm || 0);
+        
+        if (sortBy === "Name: A-Z") return a.name.localeCompare(b.name);
+        if (sortBy === "Name: Z-A") return b.name.localeCompare(a.name);
+
+        if (sortBy === "Cup: A-Z") return cupToIndex(a.cup_size) - cupToIndex(b.cup_size);
+        if (sortBy === "Cup: Z-A") return cupToIndex(b.cup_size) - cupToIndex(a.cup_size);
+
         return 0;
       });
   }, [profiles, search, cupRange, selectedAreas, ageRange, sortBy]);
@@ -186,6 +199,14 @@ export default function Dashboard() {
                   <option className="bg-stone-900">Newest Intel</option>
                   <option className="bg-stone-900">Price: Low</option>
                   <option className="bg-stone-900">Price: High</option>
+                  <option className="bg-stone-900">Age: Low</option>
+                  <option className="bg-stone-900">Age: High</option>
+                  <option className="bg-stone-900">Height: Low</option>
+                  <option className="bg-stone-900">Height: High</option>
+                  <option className="bg-stone-900">Name: A-Z</option>
+                  <option className="bg-stone-900">Name: Z-A</option>
+                  <option className="bg-stone-900">Cup: A-Z</option>
+                  <option className="bg-stone-900">Cup: Z-A</option>
                 </select>
               </div>
 
