@@ -18,7 +18,7 @@ The main entry point is `kaguya.py`.
 
 ### Syntax
 ```bash
-python3 kaguya.py [--mode {full,update,update-images}] [--pages <int>] [--db <url>]
+python3 kaguya.py [--mode {full,update,update-images}] [--pages <int>] [--area <code>] [--db <url>]
 ```
 
 ### Arguments
@@ -26,7 +26,20 @@ python3 kaguya.py [--mode {full,update,update-images}] [--pages <int>] [--db <ur
 | :--- | :--- | :--- | :--- |
 | `--mode` | string | `full` | `full`: Discover new URLs and scrape.<br>`update`: Re-scrape all existing URLs in the DB.<br>`update-images`: Only scrape profiles missing local images. |
 | `--pages` | integer | `5` | (Full mode only) Number of pages to crawl for discovery. |
+| `--area` | string | _none_ | Area code for profile discovery (e.g., `A1311`, `A1304`). Limits discovery to specific wards/districts. |
 | `--db` | string | `sqlite:///kaguya.db` | SQLAlchemy database URL. |
+
+### Area Codes
+Use area codes to narrow profile discovery to specific Tokyo wards/districts:
+- `A1311` — Chiyoda-ku (千代田区)
+- `A1304` / `A130401` — Chuo-ku (中央区)
+- See Yoasobi Heaven area list for other codes
+
+Example:
+```bash
+# Discover profiles only from Chiyoda district
+python3 kaguya.py --mode full --area A1311 --pages 3
+```
 
 ## Operational Considerations
 
@@ -46,19 +59,48 @@ Key Tables:
 
 #### Daily Collection (Discovery)
 ```bash
-python3 kaguya.py --mode full --pages 3
+# Full discovery across all areas
+python3 kaguya.py --mode full
+
+# Target specific ward/district
+python3 kaguya.py --mode full --area A1311 --pages 3
 ```
 
 #### Weekly Trend Update
 ```bash
+# Re-scrape all existing profiles
 python3 kaguya.py --mode update
 ```
 
 #### Image Recovery (Filling gaps)
-If you have legacy records without photos:
 ```bash
+# Recover missing images from database URLs
 python3 kaguya.py --mode update-images
 ```
+
+## Advanced Usage
+
+### Custom Database Location
+```bash
+python3 kaguya.py --mode full --db /path/to/my_kaguya.db
+```
+
+### Area-Based Discovery
+Use `--area` parameter to limit discovery to specific Tokyo wards:
+- `A1311` — Chiyoda-ku (千代田区)
+- `A1304` / `A130401` — Chuo-ku (中央区)
+- See Yoasobi Heaven area list for complete codes
+
+Example: Target Shibuya
+```bash
+python3 kaguya.py --mode full --area A1311 --pages 5
+```
+
+### Performance Tips
+- Use `--pages 2-3` for daily quick checks
+- Use `--pages 5-10` for comprehensive weekly discovery
+- Always run in "polite" mode—don't disable delays, it helps avoid blocking
+- Schedule batch updates during off-hours (the tool enforces breaks automatically)
 
 ## Module Reference
 - `discovery.py`: `DiscoveryModule`
