@@ -20,9 +20,9 @@ class KaguyaEngine:
         match = re.search(r'girlid-(\d+)', url)
         return match.group(1) if match else "unknown"
 
-    async def run_full(self, max_pages=5):
-        print(f"[{datetime.now()}] Starting Full Run...")
-        urls = await self.discovery.discover_profiles(max_pages=max_pages)
+    async def run_full(self, max_pages=5, area=None):
+        print(f"[{datetime.now()}] Starting Full Run (Area: {area if area else 'All'})...")
+        urls = await self.discovery.discover_profiles(max_pages=max_pages, area=area)
         await self._process_urls(urls)
 
     async def run_update(self):
@@ -145,6 +145,7 @@ def main():
     parser = argparse.ArgumentParser(description="kaguya: Tokyo Delivery Health Data Collector")
     parser.add_argument("--mode", choices=["full", "update", "update-images"], default="full", help="Run mode")
     parser.add_argument("--pages", type=int, default=5, help="Number of pages to discover (full mode only)")
+    parser.add_argument("--area", help="Specific area code (e.g., A1311 or A1304/A130401)")
     parser.add_argument("--db", default="sqlite:///kaguya.db", help="Database URL")
     
     args = parser.parse_args()
@@ -152,7 +153,7 @@ def main():
     engine = KaguyaEngine(args.db)
     
     if args.mode == "full":
-        asyncio.run(engine.run_full(max_pages=args.pages))
+        asyncio.run(engine.run_full(max_pages=args.pages, area=args.area))
     elif args.mode == "update":
         asyncio.run(engine.run_update())
     elif args.mode == "update-images":

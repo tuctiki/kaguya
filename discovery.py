@@ -9,9 +9,9 @@ class DiscoveryModule:
         self.girl_list_url = f"{self.base_url}/en/tokyo/girl-list/"
         self.shop_list_url = f"{self.base_url}/en/tokyo/shop-list/"
 
-    async def discover_profiles(self, max_pages=5):
+    async def discover_profiles(self, max_pages=5, area=None):
         """
-        Discover profile URLs from the aggregated girl list.
+        Discover profile URLs from the aggregated girl list or area-specific list.
         """
         profile_urls = set()
         
@@ -20,7 +20,11 @@ class DiscoveryModule:
             page = await browser.new_page()
             
             for i in range(1, max_pages + 1):
-                url = f"{self.girl_list_url}?page={i}"
+                if area:
+                    url = f"{self.base_url}/en/tokyo/{area}/girl-list/?page={i}"
+                else:
+                    url = f"{self.girl_list_url}?page={i}"
+                
                 print(f"Discovering profiles on page {i}: {url}")
                 
                 try:
